@@ -25,7 +25,12 @@
         <v-btn v-on:click="generateWords">Generar palabras</v-btn>
       </v-col>
       <v-col cols="12" class="text-center">
-        <p>{{ frase }}</p>
+        <span id="primer-frase">
+          {{ frase[0] }}
+        </span>
+        <span v-for="palabra in frase" :key="palabra" >
+          {{ palabra }}
+        </span>
       </v-col>
     </v-row>
   </v-container>
@@ -49,14 +54,17 @@ export default {
       for (var i = 0; i < cant; i++) {
         var number = Math.floor(Math.random() * this.words.length)
         var phrase = this.words[number]
-        // eslint-disable-next-line no-unused-expressions
         this.frase.push(phrase)
       }
+      /* eslint-disable */
+      this.frase[0].toUpperCase() + this.frase.slice(1)
     }
   }
 }
 </script>
 
 <style>
-
+#primer-frase{
+  text-transform: capitalize;
+}
 </style>
